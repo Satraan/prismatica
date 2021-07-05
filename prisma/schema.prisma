@@ -15,8 +15,8 @@ model Card {
   createdAt   DateTime    @default(now())
   name        String      @db.VarChar(255)
   scryfallUri String      @db.VarChar(255)
-  CardImage   CardImage[]
-  Color       Color[]
+  images   CardImage[]
+  colors       Color[]
 }
 
 model CardImage {
@@ -28,10 +28,11 @@ model CardImage {
 }
 
 model Color {
-  id  Int    @id @default(autoincrement())
-  uri String @db.VarChar(255)
-  Card   Card? @relation(fields: [cardId], references: [id])
+  id     Int    @id @default(autoincrement())
+  uri    String @db.VarChar(255)
+  Card   Card?  @relation(fields: [cardId], references: [id])
   cardId Int?
+  code   String @db.VarChar(255)
 }
 
 model User {
